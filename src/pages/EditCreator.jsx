@@ -54,59 +54,62 @@ export default function EditCreator() {
   return (
     <>
       <h2>Edit Creator</h2>
-      <form onSubmit={updateCreator}>
-        <label htmlFor="name">
-          <h3>Name:</h3>
-        </label>
-        <input
-          type="text"
-          id="name"
-          name="name"
-          autoComplete="off"
-          value={creator.name || ""}
-          onChange={onChange}
-          required
-        />
-        <br />
-        <label htmlFor="name">
-          <h3>URL:</h3>
-        </label>
-        <input
-          type="text"
-          id="url"
-          name="url"
-          autoComplete="off"
-          value={creator.url || ""}
-          onChange={onChange}
-          required
-        />
-        <br />
-        <label htmlFor="name">
-          <h3>Description:</h3>
-        </label>
-        <input
-          type="text"
-          id="description"
-          name="description"
-          autoComplete="off"
-          value={creator.description || ""}
-          onChange={onChange}
-        />
-        <br />
-        <label htmlFor="name">
-          <h3>Image Link:</h3>
-        </label>
-        <input
-          type="text"
-          id="imageURL"
-          name="imageURL"
-          autoComplete="off"
-          value={creator.imageURL || ""}
-          onChange={onChange}
-        />
-        <br />
-        <button type="submit">Save</button>
-      </form>
+      <div className="form-container">
+        <form onSubmit={updateCreator}>
+          <label htmlFor="name">
+            <h3>Name:</h3>
+          </label>
+          <input
+            type="text"
+            id="name"
+            name="name"
+            autoComplete="off"
+            value={creator.name || ""}
+            onChange={onChange}
+            required
+          />
+
+          <label htmlFor="name">
+            <h3>URL:</h3>
+          </label>
+          <input
+            type="text"
+            id="url"
+            name="url"
+            autoComplete="off"
+            value={creator.url || ""}
+            onChange={onChange}
+            required
+          />
+
+          <label htmlFor="name">
+            <h3>Description:</h3>
+          </label>
+          <textarea
+            type="text"
+            id="description"
+            name="description"
+            autoComplete="off"
+            value={creator.description || ""}
+            onChange={onChange}
+          />
+
+          <label htmlFor="name">
+            <h3>Image Link:</h3>
+          </label>
+          <input
+            type="text"
+            id="imageURL"
+            name="imageURL"
+            autoComplete="off"
+            value={creator.imageURL || ""}
+            onChange={onChange}
+          />
+          <div className="menu-container">
+            <button type="submit">Save</button>
+          </div>
+        </form>
+      </div>
     </>
   );
 }

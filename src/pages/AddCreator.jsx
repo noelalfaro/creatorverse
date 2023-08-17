@@ -21,7 +21,7 @@ export default function AddCreator() {
       await supabase.from("creators").insert(creator);
 
       console.log("New Creator added to database!");
-      navigate("/show-creators");
+      navigate("/");
     } catch (error) {
       console.log("error creating creator: ", error);
     }
@@ -35,63 +35,64 @@ export default function AddCreator() {
   return (
     <>
       <h1>Add Creator</h1>
+      <div className="form-container">
+        <form onSubmit={createCreator}>
+          <label htmlFor="name">
+            <h3>Name:</h3>
+          </label>
+          <input
+            type="text"
+            id="name"
+            name="name"
+            autoComplete="off"
+            value={creator.name}
+            onChange={onChange}
+            required
+          />
 
-      <form onSubmit={createCreator}>
-        <label htmlFor="name">
-          <h3>Name:</h3>
-        </label>
-        <input
-          type="text"
-          id="name"
-          name="name"
-          autoComplete="off"
-          value={creator.name}
-          onChange={onChange}
-          required
-        />
-        <br />
-        <label htmlFor="name">
-          <h3>URL:</h3>
-        </label>
-        <input
-          type="text"
-          id="url"
-          name="url"
-          autoComplete="off"
-          value={creator.url}
-          onChange={onChange}
-          required
-        />
-        <br />
-        <label htmlFor="name">
-          <h3>Description:</h3>
-        </label>
-        <input
-          type="text"
-          id="description"
-          name="description"
-          autoComplete="off"
-          value={creator.description}
-          onChange={onChange}
-        />
-        <br />
-        <label htmlFor="name">
-          <h3>Image Link:</h3>
-        </label>
-        <input
-          type="text"
-          id="imageURL"
-          name="imageURL"
-          autoComplete="off"
-          value={creator.imageURL}
-          onChange={onChange}
-        />
-        <br />
-        <button type="submit">Add Creator To Database</button>
-        <Link to={"/show-creators"}>
+          <label htmlFor="name">
+            <h3>URL:</h3>
+          </label>
+          <input
+            type="text"
+            id="url"
+            name="url"
+            autoComplete="off"
+            value={creator.url}
+            onChange={onChange}
+            required
+          />
+
+          <label htmlFor="name">
+            <h3>Description:</h3>
+          </label>
+          <textarea
+            type="text"
+            id="description"
+            name="description"
+            autoComplete="off"
+            value={creator.description}
+            onChange={onChange}
+          />
+
+          <label htmlFor="name">
+            <h3>Image Link:</h3>
+          </label>
+          <input
+            type="text"
+            id="imageURL"
+            name="imageURL"
+            autoComplete="off"
+            value={creator.imageURL}
+            onChange={onChange}
+          />
+          <br />
+          <button type="submit">Add Creator To Database</button>
+        </form>
+        <Link to={"/"}>
           <button>Back to Creators</button>
         </Link>
-      </form>
+      </div>
     </>
   );
 }

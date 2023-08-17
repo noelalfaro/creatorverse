@@ -39,11 +39,16 @@ function ViewCreator() {
     event.preventDefault();
     try {
       await supabase.from("creators").delete().eq("id", id);
-      navigate("/show-creators");
+      navigate("/");
       alert("Creator Deleted");
     } catch (error) {
       console.error("Error deleting post:", error);
     }
+  };
+
+  const handleButtonClick = (e) => {
+    e.stopPropagation(); // Prevent the card's click event from firing
+    window.open(creator.url, "_blank"); // Open the external URL in a new tab
   };
 
   return (
@@ -52,32 +57,33 @@ function ViewCreator() {
         <progress></progress>
       ) : (
         <>
-          <h2>View Creator</h2>
-          <div>
-            <h3>Name: {creator.name}</h3>
-            <h3>Link: {creator.url}</h3>
-            <h3>Description: {creator.description}</h3>
+          <div className="full-creator-container">
+            <h2>{creator.name}</h2>
+            <button onClick={handleButtonClick}>Visit Their Page</button>
+            <h3>{creator.description}</h3>
             <img
               src={creator.imageURL}
-              width={"300px"}
+              // width={"300px"}
               alt={creator.name + ".png"}
             />
           </div>
 
-          <Link to={`/edit-creator/${id}`}>
-            <button>Edit Creator</button>
-          </Link>
+          <div className="menu-container">
+            <Link to={`/edit-creator/${id}`}>
+              <button>Edit Creator</button>
+            </Link>
 
-          <button onClick={deleteCreator} style={{ backgroundColor: "red" }}>
-            Delete Creator
-          </button>
-          <button
-            onClick={() => {
-              navigate("/show-creators");
-            }}
-          >
-            Go to Creator Feed
-          </button>
+            <button onClick={deleteCreator} style={{ backgroundColor: "red" }}>
+              Delete Creator
+            </button>
+            <button
+              onClick={() => {
+                navigate("/");
+              }}
+            >
+              Go to Creator Feed
+            </button>
+          </div>
         </>
       )}
     </>
